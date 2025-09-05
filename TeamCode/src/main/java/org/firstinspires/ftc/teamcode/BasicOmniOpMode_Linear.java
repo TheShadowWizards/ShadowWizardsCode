@@ -144,8 +144,8 @@ public class BasicOmniOpMode_Linear extends LinearOpMode {
 
             // Send calculated power to wheels
             Fleft.setPower(FleftPower);
-            Bleft.setPower(FrightPower);
-            Fright.setPower(BleftPower);
+            Bleft.setPower(BleftPower);
+            Fright.setPower(FrightPower);
             Bright.setPower(BrightPower);
 
             // Show the elapsed game time and wheel power.
