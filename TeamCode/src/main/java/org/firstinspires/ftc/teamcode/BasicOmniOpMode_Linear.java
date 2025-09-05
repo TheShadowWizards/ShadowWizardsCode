@@ -69,10 +69,10 @@ public class BasicOmniOpMode_Linear extends LinearOpMode {
 
         // Initialize the hardware variables. Note that the strings used here must correspond
         // to the names assigned during the robot configuration step on the DS or RC devices.
-        Fleft = hardwareMap.get(DcMotor.class, "front_left_drive");
-        Bleft = hardwareMap.get(DcMotor.class, "back_left_drive");
-        Fright = hardwareMap.get(DcMotor.class, "front_right_drive");
-        Bright = hardwareMap.get(DcMotor.class, "back_right_drive");
+        Fleft = hardwareMap.get(DcMotor.class, "Fleft");
+        Bleft = hardwareMap.get(DcMotor.class, "Bleft");
+        Fright = hardwareMap.get(DcMotor.class, "Fright");
+        Bright = hardwareMap.get(DcMotor.class, "Bright");
 
         // ########################################################################################
         // !!!            IMPORTANT Drive Information. Test your motor directions.            !!!!!
