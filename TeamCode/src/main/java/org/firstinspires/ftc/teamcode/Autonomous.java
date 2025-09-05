@@ -33,6 +33,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -55,8 +56,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * the direction of all 4 motors (see code below).
  */
 
-@TeleOp(name="ShadowDrive", group="OpMode")
-public class ShadowDrive extends OpMode {
+@Autonomous(name="ShadowDrive", group="OpMode")
+public class Autonomous extends OpMode {
 
     // Declare OpMode members for each of the 4 motors.
     private ElapsedTime runtime = new ElapsedTime();
