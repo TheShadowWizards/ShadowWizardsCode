@@ -56,7 +56,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  */
 
 @TeleOp(name="ShadowDrive", group="OpMode")
-public class BasicOmniOpMode extends OpMode {
+public class ShadowDrive extends OpMode {
 
     // Declare OpMode members for each of the 4 motors.
     private ElapsedTime runtime = new ElapsedTime();
