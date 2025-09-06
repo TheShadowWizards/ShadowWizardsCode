@@ -4,8 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@Autonomous(name = "ShadowDrive", group = "OpMode")
-public class ShadowDrive extends LinearOpMode {
+@Autonomous(name = "ShadowAuto", group = "Autonomous")
+public class ShadowAuto extends LinearOpMode {
 
     private DcMotor Fleft = null;
     private DcMotor Bleft = null;
