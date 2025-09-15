@@ -62,6 +62,7 @@ public class ShadowDrive extends LinearOpMode {
     private DcMotor Bleft = null;
     private DcMotor Fright = null;
     private DcMotor Bright = null;
+    private DcMotor shooter = null;
 
     @Override
     public void runOpMode() {
@@ -72,6 +73,8 @@ public class ShadowDrive extends LinearOpMode {
         Bleft = hardwareMap.get(DcMotor.class, "Bleft");
         Fright = hardwareMap.get(DcMotor.class, "Fright");
         Bright = hardwareMap.get(DcMotor.class, "Bright");
+        shooter = hardwareMap.get(DcMotor.class, "shooter");
+
 
         // ########################################################################################
         // !!!            IMPORTANT Drive Information. Test your motor directions.            !!!!!
@@ -87,6 +90,7 @@ public class ShadowDrive extends LinearOpMode {
         Bleft.setDirection(DcMotor.Direction.REVERSE);
         Fright.setDirection(DcMotor.Direction.FORWARD);
         Bright.setDirection(DcMotor.Direction.FORWARD);
+        shooter.setDirection(DcMotor.Direction.REVERSE);
 
         // Wait for the game to start (driver presses START)
         telemetry.addData("Status", "Initialized");
@@ -146,6 +150,16 @@ public class ShadowDrive extends LinearOpMode {
             Bleft.setPower(BleftPower);
             Fright.setPower(FrightPower);
             Bright.setPower(BrightPower);
+
+            if (gamepad1.a) {
+                shooter.setPower(1);
+            }
+            else if (gamepad1.b) {
+                shooter.setPower(-1);
+            }
+            else {
+                shooter.setPower(0);
+            }
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
