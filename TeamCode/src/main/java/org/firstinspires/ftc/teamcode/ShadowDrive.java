@@ -62,7 +62,8 @@ public class ShadowDrive extends LinearOpMode {
     private DcMotor Bleft = null;
     private DcMotor Fright = null;
     private DcMotor Bright = null;
-    private DcMotor shooter = null;
+    private DcMotor shooter1 = null;
+    private DcMotor shooter2 = null;
 
     @Override
     public void runOpMode() {
@@ -73,7 +74,8 @@ public class ShadowDrive extends LinearOpMode {
         Bleft = hardwareMap.get(DcMotor.class, "Bleft");
         Fright = hardwareMap.get(DcMotor.class, "Fright");
         Bright = hardwareMap.get(DcMotor.class, "Bright");
-        shooter = hardwareMap.get(DcMotor.class, "shooter");
+        shooter1 = hardwareMap.get(DcMotor.class, "shooter1");
+        shooter2 = hardwareMap.get(DcMotor.class, "shooter2");
 
 
         // ########################################################################################
@@ -90,7 +92,8 @@ public class ShadowDrive extends LinearOpMode {
         Bleft.setDirection(DcMotor.Direction.REVERSE);
         Fright.setDirection(DcMotor.Direction.FORWARD);
         Bright.setDirection(DcMotor.Direction.FORWARD);
-        shooter.setDirection(DcMotor.Direction.REVERSE);
+        shooter1.setDirection(DcMotor.Direction.REVERSE);
+        shooter2.setDirection(DcMotor.Direction.FORWARD);
 
         // Wait for the game to start (driver presses START)
         telemetry.addData("Status", "Initialized");
@@ -151,15 +154,15 @@ public class ShadowDrive extends LinearOpMode {
             Fright.setPower(FrightPower);
             Bright.setPower(BrightPower);
 
-            if (gamepad1.a) {
-                shooter.setPower(1);
-            }
-            else if (gamepad1.b) {
-                shooter.setPower(-1);
-            }
-            else {
-                shooter.setPower(0);
-            }
+            if (gamepad1.a)
+                shooter1.setPower(1);
+                shooter2.setPower(1);
+            else if (gamepad1.b)
+                shooter1.setPower(-1);
+                shooter2.setPower(-1);
+            else
+                shooter1.setPower(0);
+                shooter2.setPower(0);
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
