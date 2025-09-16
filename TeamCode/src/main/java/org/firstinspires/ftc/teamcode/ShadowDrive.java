@@ -154,15 +154,18 @@ public class ShadowDrive extends LinearOpMode {
             Fright.setPower(FrightPower);
             Bright.setPower(BrightPower);
 
-            if (gamepad1.a)
+            if (gamepad1.a) {
                 shooter1.setPower(1);
                 shooter2.setPower(1);
-            else if (gamepad1.b)
+            }
+            else if (gamepad1.b) {
                 shooter1.setPower(-1);
                 shooter2.setPower(-1);
-            else
+            }
+            else {
                 shooter1.setPower(0);
                 shooter2.setPower(0);
+            }
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
