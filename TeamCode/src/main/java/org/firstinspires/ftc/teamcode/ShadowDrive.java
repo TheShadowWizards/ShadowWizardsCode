@@ -64,7 +64,8 @@ public class ShadowDrive extends LinearOpMode {
     private DcMotor Bright = null;
     private DcMotor shooter1 = null;
     private DcMotor shooter2 = null;
-    private DcMotor intake = null;
+    private DcMotor intake1 = null;
+    private DcMotor intake2 = null;
 
     @Override
     public void runOpMode() {
@@ -77,7 +78,8 @@ public class ShadowDrive extends LinearOpMode {
         Bright = hardwareMap.get(DcMotor.class, "Bright");
         shooter1 = hardwareMap.get(DcMotor.class, "shooter1");
         shooter2 = hardwareMap.get(DcMotor.class, "shooter2");
-        intake = hardwareMap.get(DcMotor.class, "intake");
+        intake1 = hardwareMap.get(DcMotor.class, "intake1");
+        intake2 = hardwareMap.get(DcMotor.class, "intake2");
 
 
         // ########################################################################################
@@ -156,26 +158,28 @@ public class ShadowDrive extends LinearOpMode {
             Fright.setPower(FrightPower);
             Bright.setPower(BrightPower);
 
+            {
+                shooter1.setPower(.325);
+                shooter2.setPower(.325);
+            }
             if (gamepad2.a) {
-                shooter1.setPower(1);
-                shooter2.setPower(1);
+                intake2.setPower(1);
             }
             else if (gamepad2.b) {
-                shooter1.setPower(-1);
-                shooter2.setPower(-1);
+                intake2.setPower(-1);
             }
             else {
-                shooter1.setPower(0);
-                shooter2.setPower(0);
+                intake2.setPower(0);
             }
+
             if (gamepad2.left_bumper) {
-                intake.setPower(1);
+                intake1.setPower(1);
             }
             else if (gamepad2.right_bumper) {
-                intake.setPower(-1);
+                intake1.setPower(-1);
             }
             else {
-                shooter1.setPower(0);
+                intake1.setPower(0);
             }
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
