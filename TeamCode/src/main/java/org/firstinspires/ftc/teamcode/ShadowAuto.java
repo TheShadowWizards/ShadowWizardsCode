@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name = "ShadowAuto", group = "Autonomous")
 public class ShadowAuto extends LinearOpMode {
@@ -11,6 +12,10 @@ public class ShadowAuto extends LinearOpMode {
     private DcMotor Bleft = null;
     private DcMotor Fright = null;
     private DcMotor Bright = null;
+    private DcMotor shooter1 = null;
+    private DcMotor shooter2 = null;
+    private DcMotor intake1 = null;
+    private DcMotor intake2 = null;
 
     @Override
     public void runOpMode() {
@@ -20,22 +25,29 @@ public class ShadowAuto extends LinearOpMode {
         Bleft = hardwareMap.get(DcMotor.class, "Bleft");
         Fright = hardwareMap.get(DcMotor.class, "Fright");
         Bright = hardwareMap.get(DcMotor.class, "Bright");
+        shooter1 = hardwareMap.get(DcMotor.class, "shooter1");
+        shooter2 = hardwareMap.get(DcMotor.class, "shooter2");
+        intake1 = hardwareMap.get(DcMotor.class, "intake1");
+        intake2 = hardwareMap.get(DcMotor.class, "intake2");
+
 
         // Set motor directions
         Fleft.setDirection(DcMotor.Direction.REVERSE);
         Bleft.setDirection(DcMotor.Direction.REVERSE);
         Fright.setDirection(DcMotor.Direction.FORWARD);
         Bright.setDirection(DcMotor.Direction.FORWARD);
+        shooter1.setDirection(DcMotor.Direction.REVERSE);
+        shooter2.setDirection(DcMotor.Direction.FORWARD);
+        intake1.setDirection(DcMotor.Direction.FORWARD);
+        intake2.setDirection(DcMotor.Direction.FORWARD);
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
-
         // Example Autonomous Movement: Drive forward for 1 second
-        driveForward(0.5, 1000); // 50% power for 1 second
-
+        runForTime(0.5, 1.5); // 50% power for 1 second
         // Stop all motors
         stopDriving();
 
@@ -44,13 +56,13 @@ public class ShadowAuto extends LinearOpMode {
     }
 
     // Method to drive forward
-    private void driveForward(double power, int durationMs) {
+    private void driveForward(double power) {
         Fleft.setPower(power);
         Fright.setPower(power);
         Bleft.setPower(power);
         Bright.setPower(power);
-
-        sleep(durationMs);
+//
+//        sleep(durationMs);
     }
 
     // Method to stop all motors
@@ -60,4 +72,24 @@ public class ShadowAuto extends LinearOpMode {
         Bleft.setPower(0);
         Bright.setPower(0);
     }
+//
+
+    public void runForTime(double power, double seconds) {
+        ElapsedTime timer = new ElapsedTime();
+        timer.reset();
+//        ElapsedTime secondTimer = new ElapsedTime();
+//        secondTimer.reset();
+
+        while (opModeIsActive() && timer.seconds() < seconds) {
+            driveForward(power);
+        }
+
+        stopDriving();
+//        while (opModeIsActive() && secondTimer.seconds() < seconds) {
+//            shooter1.setPower(-.35);
+//            shooter2.setPower(-.35);
+//            ballPush();
+//        }
+    }
+
 }
