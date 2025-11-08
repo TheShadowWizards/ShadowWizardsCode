@@ -53,8 +53,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * the direction of all 4 motors (see code below).
  */
 
-@TeleOp(name="ShadowDrive", group="Linear OpMode")
-public class ShadowDrive extends LinearOpMode {
+@TeleOp(name="Fireball", group="Linear OpMode")
+public class Fireball extends LinearOpMode {
 
     // Declare OpMode members for each of the 4 motors.
     private ElapsedTime runtime = new ElapsedTime();
@@ -159,8 +159,8 @@ public class ShadowDrive extends LinearOpMode {
             Bright.setPower(BrightPower);
 
             {
-                shooter1.setPower(-.325);
-                shooter2.setPower(-.325);
+                shooter1.setPower(-1);
+                shooter2.setPower(-1);
             }
             if (gamepad2.a) {
                 intake2.setPower(1);
