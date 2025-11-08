@@ -159,8 +159,8 @@ public class ShadowDrive extends LinearOpMode {
             Bright.setPower(BrightPower);
 
             {
-                shooter1.setPower(-.33);
-                shooter2.setPower(-.33);
+                shooter1.setPower(-.3275);
+                shooter2.setPower(-.3275);
             }
             if (gamepad2.a) {
                 intake2.setPower(1);
