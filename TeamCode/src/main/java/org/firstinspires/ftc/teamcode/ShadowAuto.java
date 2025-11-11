@@ -47,7 +47,7 @@ public class ShadowAuto extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
         // Example Autonomous Movement: Drive forward for 1 second
-        runForTime(0.5, 1.5, 7.5); // 50% power for 1 second
+        runForTime(0.5, 2, 8.9); // 50% power for 1 second
         // Stop all motors
         stopDriving();
 
@@ -74,22 +74,28 @@ public class ShadowAuto extends LinearOpMode {
     }
     private void ballPush() {
         // Let flywheels spin up
-        sleep(3000);
+        shooter1.setPower(-.33);
+        shooter2.setPower(-.33);
+        sleep(5000);
 
         // Push first ball
-        intake1.setPower(1.0);
-        intake2.setPower(1.0);
-        sleep(750);
+        intake1.setPower(-1.0);
+        intake2.setPower(0);
+        shooter1.setPower(-.3275);
+        shooter2.setPower(-.3275);
+        sleep(300);
         intake1.setPower(0);
         intake2.setPower(0);
+        shooter1.setPower(-.3275);
+        shooter2.setPower(-.3275);
 
         // Wait for flywheel to recover
         sleep(3000);
 
         // Push second ball
-        intake1.setPower(1.0);
-        intake2.setPower(1.0);
-        sleep(750);
+        intake1.setPower(-1.0);
+        intake2.setPower(-1.0);
+        sleep(600);
         intake1.setPower(0);
         intake2.setPower(0);
     }
@@ -100,9 +106,15 @@ public class ShadowAuto extends LinearOpMode {
         timer.reset();
         ElapsedTime secondTimer = new ElapsedTime();
         secondTimer.reset();
+        shooter1.setPower(-.3275);
+        shooter2.setPower(-.3275);
 
         while (opModeIsActive() && timer.seconds() < seconds1) {
+            shooter1.setPower(-.3275);
+            shooter2.setPower(-.3275);
             driveForward(power);
+            shooter1.setPower(-.3275);
+            shooter2.setPower(-.3275);
         }
 
         stopDriving();
