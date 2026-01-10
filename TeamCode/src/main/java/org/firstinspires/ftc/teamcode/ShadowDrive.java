@@ -32,6 +32,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /*
@@ -62,8 +63,8 @@ public class ShadowDrive extends LinearOpMode {
     private DcMotor Bleft = null;
     private DcMotor Fright = null;
     private DcMotor Bright = null;
-    private DcMotor shooter1 = null;
-    private DcMotor shooter2 = null;
+    private DcMotorEx shooter1 = null;
+    private DcMotorEx shooter2 = null;
     private DcMotor intake1 = null;
     private DcMotor intake2 = null;
 
@@ -76,8 +77,8 @@ public class ShadowDrive extends LinearOpMode {
         Bleft = hardwareMap.get(DcMotor.class, "Bleft");
         Fright = hardwareMap.get(DcMotor.class, "Fright");
         Bright = hardwareMap.get(DcMotor.class, "Bright");
-        shooter1 = hardwareMap.get(DcMotor.class, "shooter1");
-        shooter2 = hardwareMap.get(DcMotor.class, "shooter2");
+        shooter1 = hardwareMap.get(DcMotorEx.class, "shooter1");
+        shooter2 = hardwareMap.get(DcMotorEx.class, "shooter2");
         intake1 = hardwareMap.get(DcMotor.class, "intake1");
         intake2 = hardwareMap.get(DcMotor.class, "intake2");
 
@@ -96,8 +97,9 @@ public class ShadowDrive extends LinearOpMode {
         Bleft.setDirection(DcMotor.Direction.REVERSE);
         Fright.setDirection(DcMotor.Direction.FORWARD);
         Bright.setDirection(DcMotor.Direction.FORWARD);
-        shooter1.setDirection(DcMotor.Direction.REVERSE);
-        shooter2.setDirection(DcMotor.Direction.FORWARD);
+        shooter1.setDirection(DcMotorEx.Direction.REVERSE);
+        shooter2.setDirection(DcMotorEx.Direction.FORWARD);
+        shooter1.setVelocityPIDFCoefficients(600,0,0,0);
 
         // Wait for the game to start (driver presses START)
         telemetry.addData("Status", "Initialized");
@@ -159,8 +161,8 @@ public class ShadowDrive extends LinearOpMode {
             Bright.setPower(BrightPower);
 
             {
-                shooter1.setPower(-.3275);
-                shooter2.setPower(-.3275);
+                shooter1.setVelocity(-750);
+                shooter2.setPower(shooter1.getPower());
             }
             if (gamepad2.a) {
                 intake2.setPower(1);
