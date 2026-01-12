@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -71,10 +72,10 @@ public class ShadowEyeTest extends LinearOpMode {
         intake1  = hardwareMap.get(DcMotor.class, "intake1");
         intake2  = hardwareMap.get(DcMotor.class, "intake2");
 
-        Fleft.setDirection(DcMotor.Direction.REVERSE);
-        Bleft.setDirection(DcMotor.Direction.REVERSE);
-        Fright.setDirection(DcMotor.Direction.FORWARD);
-        Bright.setDirection(DcMotor.Direction.FORWARD);
+        Fleft.setDirection(DcMotor.Direction.FORWARD);
+        Bleft.setDirection(DcMotor.Direction.FORWARD);
+        Fright.setDirection(DcMotor.Direction.REVERSE);
+        Bright.setDirection(DcMotor.Direction.REVERSE);
 
         shooter1.setDirection(DcMotorEx.Direction.REVERSE);
         shooter2.setDirection(DcMotorEx.Direction.FORWARD);
@@ -227,11 +228,15 @@ public class ShadowEyeTest extends LinearOpMode {
         rotate = Math.max(-maxTurn, Math.min(maxTurn, rotate));
         strafe = Math.max(-maxStrafe, Math.min(maxStrafe, strafe));
 
-// --- Apply mecanum ---
-        double fl =  strafe + rotate;
-        double fr = -strafe - rotate;
-        double bl = -strafe + rotate;
-        double br =  strafe - rotate;
+        double axial = 0;        // no forward motion (safe)
+        double lateral = strafe;
+        double yaw = rotate;
+
+        double fl = axial + lateral + yaw;
+        double fr = axial - lateral - yaw;
+        double bl = axial - lateral + yaw;
+        double br = axial + lateral - yaw;
+
 
         Fleft.setPower(fl);
         Fright.setPower(fr);
