@@ -75,7 +75,7 @@ public class NewBot extends LinearOpMode {
         fleft = hardwareMap.get(DcMotor.class, "fleft");
         bleft = hardwareMap.get(DcMotor.class, "bleft");
         fright = hardwareMap.get(DcMotor.class, "fright");
-        bright = hardwareMap.get(DcMotor.class, "fright");
+        bright = hardwareMap.get(DcMotor.class, "bright");
         rshooter = hardwareMap.get(DcMotorEx.class, "rshooter");
         lshooter = hardwareMap.get(DcMotorEx.class, "lshooter");
         intake = hardwareMap.get(DcMotor.class, "intake");
@@ -159,13 +159,13 @@ public class NewBot extends LinearOpMode {
             bright.setPower(brightPower);
 
             {
-                rshooter.setVelocity(-750);
+                rshooter.setVelocity(-1600);
                 lshooter.setPower(lshooter.getPower());
             }
-            if (gamepad2.a) {
+            if (gamepad1.a) {
                 intake.setPower(1);
             }
-            else if (gamepad2.b) {
+            else if (gamepad1.b) {
                 intake.setPower(-1);
             }
             else {
