@@ -58,28 +58,26 @@ public class Fireball extends LinearOpMode {
 
     // Declare OpMode members for each of the 4 motors.
     private ElapsedTime runtime = new ElapsedTime();
-    private DcMotor Fleft = null;
-    private DcMotor Bleft = null;
-    private DcMotor Fright = null;
-    private DcMotor Bright = null;
-    private DcMotor shooter1 = null;
-    private DcMotor shooter2 = null;
-    private DcMotor intake1 = null;
-    private DcMotor intake2 = null;
+    private DcMotor fleft = null;
+    private DcMotor bleft = null;
+    private DcMotor fright = null;
+    private DcMotor bright = null;
+    private DcMotor rshooter = null;
+    private DcMotor lshooter = null;
+    private DcMotor intake = null;
 
     @Override
     public void runOpMode() {
 
         // Initialize the hardware variables. Note that the strings used here must correspond
         // to the names assigned during the robot configuration step on the DS or RC devices.
-        Fleft = hardwareMap.get(DcMotor.class, "Fleft");
-        Bleft = hardwareMap.get(DcMotor.class, "Bleft");
-        Fright = hardwareMap.get(DcMotor.class, "Fright");
-        Bright = hardwareMap.get(DcMotor.class, "Bright");
-        shooter1 = hardwareMap.get(DcMotor.class, "shooter1");
-        shooter2 = hardwareMap.get(DcMotor.class, "shooter2");
-        intake1 = hardwareMap.get(DcMotor.class, "intake1");
-        intake2 = hardwareMap.get(DcMotor.class, "intake2");
+        fleft = hardwareMap.get(DcMotor.class, "fleft");
+        bleft = hardwareMap.get(DcMotor.class, "bleft");
+        fright = hardwareMap.get(DcMotor.class, "fright");
+        bright = hardwareMap.get(DcMotor.class, "bright");
+        lshooter = hardwareMap.get(DcMotor.class, "lshooter");
+        rshooter = hardwareMap.get(DcMotor.class, "rshooter");
+        intake = hardwareMap.get(DcMotor.class, "intake");
 
 
         // ########################################################################################
@@ -92,12 +90,12 @@ public class Fireball extends LinearOpMode {
         // when you first test your robot, push the left joystick forward and observe the direction the wheels turn.
         // Reverse the direction (flip FORWARD <-> REVERSE ) of any wheel that runs backward
         // Keep testing until ALL the wheels move the robot forward when you push the left joystick forward.
-        Fleft.setDirection(DcMotor.Direction.REVERSE);
-        Bleft.setDirection(DcMotor.Direction.REVERSE);
-        Fright.setDirection(DcMotor.Direction.FORWARD);
-        Bright.setDirection(DcMotor.Direction.FORWARD);
-        shooter1.setDirection(DcMotor.Direction.REVERSE);
-        shooter2.setDirection(DcMotor.Direction.FORWARD);
+        fleft.setDirection(DcMotor.Direction.REVERSE);
+        bleft.setDirection(DcMotor.Direction.REVERSE);
+        fright.setDirection(DcMotor.Direction.FORWARD);
+        bright.setDirection(DcMotor.Direction.FORWARD);
+        rshooter.setDirection(DcMotor.Direction.REVERSE);
+        lshooter.setDirection(DcMotor.Direction.FORWARD);
 
         // Wait for the game to start (driver presses START)
         telemetry.addData("Status", "Initialized");
@@ -153,34 +151,26 @@ public class Fireball extends LinearOpMode {
             */
 
             // Send calculated power to wheels
-            Fleft.setPower(FleftPower);
-            Bleft.setPower(BleftPower);
-            Fright.setPower(FrightPower);
-            Bright.setPower(BrightPower);
+            fleft.setPower(FleftPower);
+            bleft.setPower(BleftPower);
+            fright.setPower(FrightPower);
+            bright.setPower(BrightPower);
 
             {
-                shooter1.setPower(-1);
-                shooter2.setPower(-1);
+                rshooter.setPower(-1);
+                lshooter.setPower(-1);
             }
             if (gamepad2.a) {
-                intake2.setPower(1);
+                intake.setPower(1);
             }
             else if (gamepad2.b) {
-                intake2.setPower(-1);
+                intake.setPower(-1);
             }
             else {
-                intake2.setPower(0);
+                intake.setPower(0);
             }
 
-            if (gamepad2.left_bumper) {
-                intake1.setPower(1);
-            }
-            else if (gamepad2.right_bumper) {
-                intake1.setPower(-1);
-            }
-            else {
-                intake1.setPower(0);
-            }
+
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.addData("Front left/Right", "%4.2f, %4.2f", FleftPower, FrightPower);

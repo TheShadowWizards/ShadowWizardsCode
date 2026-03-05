@@ -24,8 +24,8 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
 import java.util.List;
 
-@TeleOp(name="NewEye", group="Linear OpMode")
-public class NewEye extends LinearOpMode {
+@TeleOp(name="SingleDrive", group="Linear OpMode")
+public class SingleDrive extends LinearOpMode {
 
     /* =======================
        DRIVE / MECHANISMS
@@ -131,17 +131,17 @@ public class NewEye extends LinearOpMode {
 
 
             /* ----- Shooter ----- */
-            rshooter.setVelocity(850);
+            rshooter.setVelocity(550);
             lshooter.setPower(lshooter.getPower());
 
             /* ----- Intake ----- */
-            intake.setPower(gamepad2.a ? 1 :
-                    gamepad2.b ? -1 : 0);
-            if (gamepad2.y)
+            intake.setPower(gamepad1.a ? 1 :
+                    gamepad1.b ? -1 : 0);
+            if (gamepad1.y)
             {
                 stopper.setPosition(0.14);
             }
-            else if (gamepad2.x)
+            else if (gamepad1.x)
             {
                 stopper.setPosition(.38);
             }
@@ -215,8 +215,8 @@ public class NewEye extends LinearOpMode {
 
         double errorX = det.center.x - IMG_CENTER_X;
 
-        double kP_rotate = 0.001;
-        double kP_strafe = 0.0005;
+        double kP_rotate = 0.0012;
+        double kP_strafe = 0.0008;
 
         double rotate = errorX * kP_rotate;
         double strafe = errorX * kP_strafe;
